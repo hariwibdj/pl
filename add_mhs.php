@@ -2,31 +2,41 @@
 
 require "koneksi.php";
 
-if (isset($_POST['simpan'])){
-   
-    $npm = $_POST['npm'];
-    $nama = $_POST['nama'];
-    $email = $_POST['email'];
+// if($_POST['npm'] == "" ){
+//     echo "npm tidak boleh kosong";
+// } else
+// {
 
-    $sql ="INSERT INTO tblmahasiswa(npm,nama,email) VALUES ('$npm','$nama','$email')";
-    $simpan = mysqli_query($conn, $sql);
-    if($simpan){
-        ?>
-        <script>
-         alert("Data Mahasiswa sudah disimpan");
-       </script>
-<?php
-    }
-    else
-    {
-        ?>
-        <script>
-         alert("Data tidak bisa disimpan");
-       </script>
-        <?php
-    }
+    if (isset($_POST['simpan'])){
+       
+        
+    
+    
+        $npm = $_POST['npm'];
+        $nama = $_POST['nama'];
+        $email = $_POST['email'];
+    
+        $sql ="INSERT INTO tblmahasiswa(npm,nama,email) VALUES ('$npm','$nama','$email')";
+        $simpan = mysqli_query($conn, $sql);
+        if($simpan){
+            ?>
+            <script>
+             alert("Data Mahasiswa sudah disimpan");
+           </script>
+    <?php
+        }
+        else
+        {
+            ?>
+            <script>
+             alert("Data tidak bisa disimpan");
+           </script>
+            <?php
+        }
+    
+     }
+// }
 
- }
 
 
 ?>
@@ -44,18 +54,19 @@ if (isset($_POST['simpan'])){
   <div class="container">
       <h1>Input Data Mahasiswa</h1>
     <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
+    <!-- <form method="post" action="simpan_mhs.php"> -->
     <div class="mb-3">
       <label for="npm" class="form-label">NPM</label>
-      <input type="text" class="form-control" id="npm" name="npm">
+      <input type="text" class="form-control" id="npm" name="npm" required>
       
     </div>
     <div class="mb-3">
       <label for="nama" class="form-label">Nama</label>
-      <input type="text" class="form-control" id="nama" name="nama">
+      <input type="text" class="form-control" id="nama" name="nama" required>
     </div>
     <div class="mb-3">
       <label class="form-label" for="email">Email</label>
-      <input type="email" class="form-control" id="email" name="email">
+      <input type="email" class="form-control" id="email" name="email" required>
     </div>
     <button type="submit" class="btn btn-primary" name="simpan">SIMPAN</button>
   </form>
